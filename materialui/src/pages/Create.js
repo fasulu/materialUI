@@ -2,9 +2,9 @@ import { makeStyles } from '@material-ui/core'; // import useStyles hook
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
-import AcUnitIcon from '@material-ui/icons/AcUnit';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import React from 'react';
+import React, { useState } from 'react';
+import TextField from '@material-ui/core/TextField'
 
 
 const useStyles = makeStyles({                      // create const useStyles by makeStyles hook function
@@ -18,6 +18,11 @@ const useStyles = makeStyles({                      // create const useStyles by
     title: {
         textDecoration: 'underline',
         marginBottom: 10
+    },
+    field: {
+        marginTop: 20,
+        marginBottom: 20,
+        display: 'block'
     }
 })
 
@@ -25,53 +30,66 @@ export default function Create() {
 
     const styles = useStyles()          // create a style const asign useStyles hook to use custom styles
 
+    const [title, setTitle] = useState('')
+    const [details, setDetails] = useState('')
+    const [detailerr, setDetailErr] = useState(false)
+    const [titleerr, setTitleErr] = useState(false)
+
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        if(title === '') {
+            setTitleErr(true)
+        } else {setTitleErr(false)}
+        if(details === '') {
+            setDetailErr(true)
+        } else {setDetailErr(false)}
+
+        if (title && details) {
+            console.log(title, details)
+        }
+    }
+
     return (
 
-        // Learn typography from https://material-ui.com/components/typography/#typographyhttps://material-ui.com/components/typography/#typography and https://material-ui.com/api/typography/
-        // Learn Button more from https://material-ui.com/components/buttons/#button
+        <Container maxWidth='md'>
+            <Typography
+                className={styles.title}        // add className as dynamic styles.title to get custom style of title
+                variant='h3'
+                color='primay'
+                align='center'
+                gutterBottom        // creates bottom margin
+            >
+                Create Page
+            </Typography>
 
-            <Container maxWidth='md'>
-                <Typography
-                    className={styles.title}        // add className as dynamic styles.title to get custom style of title
-                    variant='h1'
-                    color='primay'
-                    align='center'
-                    gutterBottom        // creates bottom margin
-                >
-                    Create Page
-                </Typography>
+            <form noValidate autoComplete='off' onSubmit={handleSubmit}>
+                <TextField
+                    className={styles.field}
+                    onChange={(e) => setTitle(e.target.value)}
+                    label='Note Title'
+                    variant='outlined'
+                    color='secondary'
+                    required
+                    fullWidth
+                    error={titleerr}
+                />
 
-                <Typography
-                    variant='h6'
-                    color='textSecondary'
-                    component='h2'      // shows content in h6 overriding h2
-                    gutterBottom        // creates bottom margin
-                    align='left'
-                >
-                    This is Create Page Text
-                </Typography>
-
-
-                <Button
-                    onClick={() => console.log("you clicked me")}
-                    type="submit"
-                    color="primary"
-                    variant="contained"
-                >
-                    Submit
-                </Button>
-
-
-                <br />
-                <AcUnitIcon color="primary" fontSize="large" />
-                <AcUnitIcon color="primary" fontSize="small" />
-                <AcUnitIcon color="primary" fontSize="large" />
-                <br />
-
-
+                <TextField
+                    className={styles.field}
+                    onChange={(e) => setDetails(e.target.value)}
+                    label='Details'
+                    variant='outlined'
+                    color='secondary'
+                    multiline
+                    rows={4}
+                    required
+                    fullWidth
+                    error={detailerr}
+                />
                 <Button
                     className={styles.btn}               // add className as dynamic styles.btn to get custom style of button
-                    onClick={() => console.log("you clicked me")}
                     type="submit"
                     color="secondary"
                     variant="contained"
@@ -79,8 +97,9 @@ export default function Create() {
                 >
                     Submit
                 </Button>
+            </form>
 
-            </Container>
+        </Container>
 
     )
 }
