@@ -1,10 +1,9 @@
-import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core'; // to create custom theme import this createMuiTheme function
+import { makeStyles } from '@material-ui/core'; // import useStyles hook
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import AcUnitIcon from '@material-ui/icons/AcUnit';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
-import { purple } from '@material-ui/core/colors';
 import React from 'react';
 
 
@@ -22,22 +21,6 @@ const useStyles = makeStyles({                      // create const useStyles by
     }
 })
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: '#fefefe'
-        },
-        secondary: purple
-    },
-    typography: {
-        fontFamily: 'Quicksand',
-        fontWeightLight: 400,
-        fontWeightRegular: 500,
-        fontWeightMedium: 600,
-        fontWeightBolder: 700
-    }
-})
-
 export default function Create() {
 
     const styles = useStyles()          // create a style const asign useStyles hook to use custom styles
@@ -47,7 +30,6 @@ export default function Create() {
         // Learn typography from https://material-ui.com/components/typography/#typographyhttps://material-ui.com/components/typography/#typography and https://material-ui.com/api/typography/
         // Learn Button more from https://material-ui.com/components/buttons/#button
 
-        <ThemeProvider theme={theme}>
             <Container maxWidth='md'>
                 <Typography
                     className={styles.title}        // add className as dynamic styles.title to get custom style of title
@@ -99,6 +81,6 @@ export default function Create() {
                 </Button>
 
             </Container>
-        </ThemeProvider>
+
     )
 }
