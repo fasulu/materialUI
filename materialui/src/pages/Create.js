@@ -1,10 +1,15 @@
-import { makeStyles } from '@material-ui/core'; // import useStyles hook
+import { FormControlLabel, makeStyles } from '@material-ui/core'; // import useStyles hook
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import React, { useState } from 'react';
 import TextField from '@material-ui/core/TextField'
+import Radio from '@material-ui/core/Radio'
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
+
 
 
 const useStyles = makeStyles({                      // create const useStyles by makeStyles hook function
@@ -34,20 +39,21 @@ export default function Create() {
     const [details, setDetails] = useState('')
     const [detailerr, setDetailErr] = useState(false)
     const [titleerr, setTitleErr] = useState(false)
+    const [category, setCategory] = useState('')
 
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        if(title === '') {
+        if (title === '') {
             setTitleErr(true)
-        } else {setTitleErr(false)}
-        if(details === '') {
+        } else { setTitleErr(false) }
+        if (details === '') {
             setDetailErr(true)
-        } else {setDetailErr(false)}
+        } else { setDetailErr(false) }
 
         if (title && details) {
-            console.log(title, details)
+            console.log(title, details, category)
         }
     }
 
@@ -88,6 +94,18 @@ export default function Create() {
                     fullWidth
                     error={detailerr}
                 />
+
+                <FormControl className={styles.field}>
+                    <FormLabel className={styles.title}>Category</FormLabel>
+                        <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)} >
+                            <FormControlLabel value='eat' control={<Radio />} label='Eat' />
+                            <FormControlLabel value='sleep' control={<Radio />} label='Sleep' />
+                            <FormControlLabel value='work' control={<Radio />} label='work' />
+                            <FormControlLabel value='rest' control={<Radio />} label='Rest' />
+                        </RadioGroup>
+
+                    
+                </FormControl>
                 <Button
                     className={styles.btn}               // add className as dynamic styles.btn to get custom style of button
                     type="submit"
