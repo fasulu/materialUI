@@ -5,9 +5,13 @@ const app = express()
 
 const { uniqueNamesGenerator, names, languages, countries } = require("unique-names-generator");
 
-const persons = [];
+// fake address generator can be created by fakerator.js which can be installed from npmjs.com by npm install fakerator
+// var Fakerator = require("fakerator");    // require fakerator
+// var fakerator = Fakerator("de-DE");      // assign country
+// var name = fakerator.names.name();   // to create only name
+// fakerator.entity.user()              // to create address
 
-var temp;
+const persons = [];
 
 for (let i = 0; i < 9; i++) {
 
@@ -47,11 +51,39 @@ app.get("/namelist", async (req, res) => {
 
         console.log(nameList);
 
-        res.json({nameList})
+        res.json({
+            message:"Data passed successfully",
+            nameList
+        })
 
     } catch (error) {
         console.log(error)
     }
+})
+
+app.post("/addinfo", async (req, res) => {
+
+    // TODOS: currently adding information without validation, later update with validation
+    try {
+        
+        console.log("body information", req.body);
+    
+        const addInfo = await Person.create({
+            firstname: req.body.firstname,
+            language: req.body.language,
+            countries: req.body.countries
+        })
+    
+        res.json({message: "Information added successfully", addInfo})
+
+    } catch (error) {
+        console.error(error)
+        res.status(400).json({
+            messageError: "Error while adding information",
+            error
+        })  
+    }
+
 })
 
 const deletedAllThenAdd = async () => {

@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import { FormControlLabel, makeStyles } from '@material-ui/core'; // import useStyles hook
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
@@ -42,7 +44,7 @@ export default function Create() {
     const [category, setCategory] = useState('')
 
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         if (title === '') {
@@ -54,7 +56,25 @@ export default function Create() {
 
         if (title && details) {
             console.log(title, details, category)
+
+            const userInfo = {
+                firstname: title,
+                language: details,
+                countries: category
+            }
+
+            // TODOS add validation before sending to backend
+
+            const response = await axios.post('http://localhost:9005/addinfo', userInfo)
+
+            if (response.status === 200) {
+                console.log("information added successfully", response.data.addInfo)
+            } else {
+                console.log("Something went wrong")
+            }
         }
+
+
     }
 
     return (
@@ -97,14 +117,14 @@ export default function Create() {
 
                 <FormControl className={styles.field}>
                     <FormLabel className={styles.title}>Category</FormLabel>
-                        <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)} >
-                            <FormControlLabel value='eat' control={<Radio />} label='Eat' />
-                            <FormControlLabel value='sleep' control={<Radio />} label='Sleep' />
-                            <FormControlLabel value='work' control={<Radio />} label='work' />
-                            <FormControlLabel value='rest' control={<Radio />} label='Rest' />
-                        </RadioGroup>
+                    <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)} >
+                        <FormControlLabel value='france' control={<Radio />} label='France' />
+                        <FormControlLabel value='england' control={<Radio />} label='England' />
+                        <FormControlLabel value='usa' control={<Radio />} label='USA' />
+                        <FormControlLabel value='russia' control={<Radio />} label='Russia' />
+                    </RadioGroup>
 
-                    
+
                 </FormControl>
                 <Button
                     className={styles.btn}               // add className as dynamic styles.btn to get custom style of button
