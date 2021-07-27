@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Container from '@material-ui/core/Container';
+import NoteCard from '../components/NoteCard';
 
 export default function Notes() {
 
@@ -20,50 +21,32 @@ export default function Notes() {
         
     }, [])
     
+    const userDelete = async (id) => {
+        console.log("user id to delete is ", id)
+
+        await axios.delete("http://localhost:9005/userId/" + id)
+
+        const newNotes = notes.filter(note => note._id !== id)
+
+        setNotes(newNotes)
+
+    }
+
+
     return (
-        
-        // <>
-        //     <ul>         // Without materialUI styling
-        
-        //         {notes.map((elem) =>
-        //             <li key={elem._id}> {elem.firstname} {elem.language} </li>
-        //         )}
-        
-        //     </ul>
-        // </>
-
-        // <Container>      // How the Grid, Container and Paper works, example
-
-        //     <Grid container>
-        //         <Grid item xs={12} sm={6} md={3} lg={1} >
-        //             <Paper>1</Paper>
-        //         </Grid>
-        //         <Grid item xs={12} sm={6} md={3} lg={1} >
-        //             <Paper>2</Paper>
-        //         </Grid>
-        //         <Grid item xs={12} sm={6} md={3} lg={1} >
-        //             <Paper>3</Paper>
-        //         </Grid>
-        //         <Grid item xs={12} sm={6} md={3} lg={1} >
-        //             <Paper>4</Paper>
-        //         </Grid>
-        //     </Grid>
-
-        //     </Container>
 
         <Container>
 
-            <Grid container>
+            <Grid container spacing={3}>
                 {notes.map((elem) =>
                     <Grid item key={elem._id} xs={12} sm={6} md={3}>
-                        <Paper>
-                            <p>Name: {elem.firstname}</p>
-                            <p>Language: {elem.language} </p>
-                            <p>Country: {elem.countries}</p>
-                        </Paper>
+
+                            <NoteCard note = {elem} handleDelete = {userDelete} />
+
                     </Grid>
                 )}
             </Grid>
         </Container>
+
     )
 }

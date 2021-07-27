@@ -42,8 +42,10 @@ const port = 9005
 app.use(express.json())
 app.use(cors())
 
+// List available details
+
 app.get("/namelist", async (req, res) => {
-    
+
     try {
         console.log("Im in name list", req.body)
 
@@ -52,7 +54,7 @@ app.get("/namelist", async (req, res) => {
         console.log(nameList);
 
         res.json({
-            message:"Data passed successfully",
+            message: "Data passed successfully",
             nameList
         })
 
@@ -61,30 +63,91 @@ app.get("/namelist", async (req, res) => {
     }
 })
 
+// Add new details
+
 app.post("/addinfo", async (req, res) => {
 
     // TODOS: currently adding information without validation, later update with validation
     try {
-        
+
         console.log("body information", req.body);
-    
+
         const addInfo = await Person.create({
             firstname: req.body.firstname,
             language: req.body.language,
             countries: req.body.countries
         })
-    
-        res.json({message: "Information added successfully", addInfo})
+
+        res.json({ message: "Information added successfully", addInfo })
 
     } catch (error) {
         console.error(error)
         res.status(400).json({
             messageError: "Error while adding information",
             error
-        })  
+        })
     }
 
 })
+
+// Delete selected item
+
+app.delete("/userId/:id", async (req, res) => {
+
+    const userID = req.params.id
+    console.log("In delete userId", userID)
+
+    try {
+        const userExist = await Person.findById(userID).lean()
+
+        console.log("User exist", userExist)
+
+        if(userExist === null) {
+
+            console.log("User does not exist", userID)
+
+            res.json({
+                message: "User does not exist",
+                userID
+            })
+        }
+
+        if (userExist) {
+
+            console.log("user exist", userExist)
+
+            try {
+
+                const userDeleted = await Person.findByIdAndDelete(
+                    {
+                        _id: userID
+                    }
+                ).exec()
+
+                res.json({
+                    message: "User deleted successfully",
+                    userDeleted
+                })
+
+            } catch (error) {
+
+                res.status(400).json({
+                    message: "Error while deleting the selection",
+                    error
+                })
+            }
+        }
+
+    } catch (error) {
+        res.status(400).json({
+            message: "Error while searching the user",
+            error
+        })
+
+    }
+})
+
+// Create new details after deleting the existing database collection
 
 const deletedAllThenAdd = async () => {
     try {
