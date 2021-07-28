@@ -50,6 +50,7 @@ export default function Create() {
         if (title === '') {
             setTitleErr(true)
         } else { setTitleErr(false) }
+
         if (details === '') {
             setDetailErr(true)
         } else { setDetailErr(false) }
@@ -73,8 +74,6 @@ export default function Create() {
                 console.log("Something went wrong")
             }
         }
-
-
     }
 
     return (
@@ -123,7 +122,6 @@ export default function Create() {
                         <FormControlLabel value='usa' control={<Radio />} label='USA' />
                         <FormControlLabel value='russia' control={<Radio />} label='Russia' />
                     </RadioGroup>
-
 
                 </FormControl>
                 <Button
