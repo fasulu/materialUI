@@ -1,2 +1,2 @@
 # materialUI
-# this is a step by step tutorial for material-UI.
+# This is a step by step tutorial for material-UI.
