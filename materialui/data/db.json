@@ -2,57 +2,57 @@
     "notes": [
         {
             "_id": 1,
-            "title": "Anabella",
+            "name": "Anabellae",
             "details": "Kannada",
-            "category": "St. Vincent & Grenadines"
+            "language": "St. Vincent & Grenadines"
         },
         {
             "_id": 2,
-            "title": "Cindee",
+            "name": "Cindee",
             "details": "Kurdish",
-            "category": "Lesotho"
+            "language": "Lesotho"
         },
         {
             "_id": 3,
-            "title": "Linda",
+            "name": "Linda",
             "details": "Konkani",
-            "category": "American Samoa"
+            "language": "American Samoa"
         },
         {
             "_id": 4,
-            "title": "Briney",
+            "name": "Briney",
             "details": "Chhattisgarhi",
-            "category": "Canada"
+            "language": "Canada"
         },
         {
             "_id": 5,
-            "title": "Elbertina",
+            "name": "Elbertina",
             "details": "Jin",
-            "category": "Croatia"
+            "language": "Croatia"
         },
         {
             "_id": 6,
-            "title": "Delilah",
+            "name": "Delilah",
             "details": "Persian",
-            "category": "Svalbard & Jan Mayen"
+            "language": "Svalbard & Jan Mayen"
         },
         {
             "_id": 7,
-            "title": "Gail",
+            "name": "Gail",
             "details": "Mandarin",
-            "category": "Belgium"
+            "language": "Belgium"
         },
         {
             "_id": 8,
-            "title": "Kellina",
+            "name": "Kellina",
             "details": "Sylheti",
-            "category": "South Georgia & South Sandwich Islands"
+            "language": "South Georgia & South Sandwich Islands"
         },
         {
             "_id": 9,
-            "title": "Cam",
-            "details": "Spanish",
-            "category": "Marshall Islands"
+            "name": "Cam",
+            "address": "Spanish",
+            "language": "Marshall Islands"
         }
     ]
 }

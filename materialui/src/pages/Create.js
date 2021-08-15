@@ -41,7 +41,7 @@ export default function Create() {
     const [details, setDetails] = useState('')
     const [detailerr, setDetailErr] = useState(false)
     const [titleerr, setTitleErr] = useState(false)
-    const [category, setCategory] = useState('')
+    const [country, setCountry] = useState('')
 
 
     const handleSubmit = async (e) => {
@@ -56,12 +56,12 @@ export default function Create() {
         } else { setDetailErr(false) }
 
         if (title && details) {
-            console.log(title, details, category)
+            console.log(title, details, country)
 
             const userInfo = {
                 firstname: title,
                 language: details,
-                countries: category
+                countries: country
             }
 
             // TODOS add validation before sending to backend
@@ -93,7 +93,7 @@ export default function Create() {
                 <TextField
                     className={styles.field}
                     onChange={(e) => setTitle(e.target.value)}
-                    label='Note Title'
+                    label='Name'
                     variant='outlined'
                     color='secondary'
                     required
@@ -104,7 +104,7 @@ export default function Create() {
                 <TextField
                     className={styles.field}
                     onChange={(e) => setDetails(e.target.value)}
-                    label='Details'
+                    label='Address'
                     variant='outlined'
                     color='secondary'
                     multiline
@@ -115,8 +115,8 @@ export default function Create() {
                 />
 
                 <FormControl className={styles.field}>
-                    <FormLabel className={styles.title}>Category</FormLabel>
-                    <RadioGroup value={category} onChange={(e) => setCategory(e.target.value)} >
+                    <FormLabel className={styles.title}>Country</FormLabel>
+                    <RadioGroup value={country} onChange={(e) => setCountry(e.target.value)} >
                         <FormControlLabel value='france' control={<Radio />} label='France' />
                         <FormControlLabel value='england' control={<Radio />} label='England' />
                         <FormControlLabel value='usa' control={<Radio />} label='USA' />

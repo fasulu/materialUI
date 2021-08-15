@@ -9,30 +9,40 @@ import List from '@material-ui/core/List';          // these are the core items 
 import { ListItem } from '@material-ui/core';
 import { ListItemIcon } from '@material-ui/core';
 import { ListItemText } from '@material-ui/core';
-import { SubjectOutlined, SubjectRounded } from '@material-ui/icons';
+import { SubjectOutlined, SubjectRounded, SystemUpdateAltSharp } from '@material-ui/icons';
 import { useHistory, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240
 
-const useStyles = makeStyles({                      // create and declare styles
-    pages: {
-        background: '#d5d5d5',
-        width: '100%'
-    },
-    drawer: {
-        width: drawerWidth
-    },
-    root: {
-        display: 'flex'
-    },
-    drawerPaper: {
-        width: drawerWidth,
-        background: '#f9f9f9'
-    },
-    activePage: {
-        background: '#d5d5d5'
+const useStyles = makeStyles((theme) => {             // more on styles arrow function using theme
+    return {
+        pages: {
+            background: '#d5d5d5',
+            width: '100%',
+            //padding:20   //or use theme.spacing
+            padding: theme.spacing(3)       // base theme is 8px and times 3 equal to 24px
+        },
+        drawer: {
+            width: drawerWidth
+        },
+        root: {
+            display: 'flex'
+        },
+        drawerPaper: {
+            width: drawerWidth,
+            background: '#f9f9f9'
+        },
+        activePage: {
+            background: '#d5d5d5'
+        },
+        title: {
+            //padding: 20   //or use theme.spacing
+            padding: theme.spacing(3)       // base theme is 8px and times 3 equal to 24px
+        }
     }
 })
+
+//learn more on makestyle https://www.youtube.com/watch?v=6BkqRkw0Lwc&list=PL4cUxeGkcC9gjxLvV4VEkZ6H6H4yWuS58&index=15
 
 export default function Layout({ children }) {      // pass the children under Layout tag in app.js to here 
 
@@ -63,7 +73,7 @@ export default function Layout({ children }) {      // pass the children under L
                 classes={{ paper: styles.drawerPaper }}>
 
                 <div>
-                    <Typography variant='h5' >
+                    <Typography variant='h5' className={styles.title} >
                         Address
                     </Typography>
                 </div>
