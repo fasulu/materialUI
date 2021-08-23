@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import {format} from 'date-fns'     // Learn more on how to format date using this module https://www.npmjs.com/package/date-fns
+import { format } from 'date-fns'     // Learn more on how to format date using this module https://www.npmjs.com/package/date-fns
 
 import { AppBar, makeStyles, Toolbar } from '@material-ui/core';     // these are the core items to style
 
@@ -13,13 +13,13 @@ import List from '@material-ui/core/List';          // these are the core items 
 import { ListItem } from '@material-ui/core';
 import { ListItemIcon } from '@material-ui/core';
 import { ListItemText } from '@material-ui/core';
-import { SubjectOutlined, SubjectRounded, SystemUpdateAltSharp } from '@material-ui/icons';
+import { SubjectOutlined, SubjectRounded } from '@material-ui/icons';
+import Avatar from '@material-ui/core/Avatar';
 
 const drawerWidth = 240
 
-// learn more on makestyle https://www.youtube.com/watch?v=6BkqRkw0Lwc&list=PL4cUxeGkcC9gjxLvV4VEkZ6H6H4yWuS58&index=15
 
-// learn more on App Bar https://www.youtube.com/watch?v=0WbrOfmvjvU&list=PL4cUxeGkcC9gjxLvV4VEkZ6H6H4yWuS58&index=16
+// learn more on avatar https://www.youtube.com/watch?v=gEbSx5CCgSc&list=PL4cUxeGkcC9gjxLvV4VEkZ6H6H4yWuS58&index=17
 
 const useStyles = makeStyles((theme) => {             // more on styles arrow function using theme
     return {
@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme) => {             // more on styles arrow fu
         },
         appbardate: {
             flexGrow: 1                             // use this style to push date in left and other typography entries to right
+        },
+        avatarmargin: {
+            marginLeft: theme.spacing(2)            // this will leave 16px(8px base px time 2)
         },
         toolbar: theme.mixins.toolbar               // use collection of mixins used by materialUI
     }
@@ -87,6 +90,8 @@ export default function Layout({ children }) {      // pass the children under L
                         Today is the {format(new Date(), 'dd MMMM Y')}
                     </Typography>
                     <Typography> User Name </Typography>
+                    <Avatar className={styles.avatarmargin}
+                        src="/img_avatar/appa-avatar.png" />
                 </Toolbar>
             </AppBar>
             <Drawer                                 //* create drawer to show permanently on left and over-ride materialUI paper classes by our own drawerPaper styles
