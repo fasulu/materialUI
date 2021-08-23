@@ -2,57 +2,57 @@
     "notes": [
         {
             "_id": 1,
-            "name": "Anabellae",
-            "details": "Kannada",
-            "language": "St. Vincent & Grenadines"
+            "firstname": "Anabellae",
+            "language": "Kannada",
+            "countries": "St. Vincent & Grenadines"
         },
         {
             "_id": 2,
-            "name": "Cindee",
-            "details": "Kurdish",
-            "language": "Lesotho"
+            "firstname": "Cindee",
+            "language": "Tamil",
+            "countries": "Lesotho"
         },
         {
             "_id": 3,
-            "name": "Linda",
-            "details": "Konkani",
-            "language": "American Samoa"
+            "firstname": "Linda",
+            "language": "Konkani",
+            "countries": "American Samoa"
         },
         {
             "_id": 4,
-            "name": "Briney",
-            "details": "Chhattisgarhi",
-            "language": "Canada"
+            "firstname": "Briney",
+            "language": "Chhattisgarhi",
+            "countries": "Canada"
         },
         {
             "_id": 5,
-            "name": "Elbertina",
-            "details": "Jin",
-            "language": "Croatia"
+            "firstname": "Elbertina",
+            "language": "Jin",
+            "countries": "Croatia"
         },
         {
             "_id": 6,
-            "name": "Delilah",
-            "details": "Persian",
-            "language": "Svalbard & Jan Mayen"
+            "firstname": "Delilah",
+            "language": "Persian",
+            "countries": "Svalbard & Jan Mayen"
         },
         {
             "_id": 7,
-            "name": "Gail",
-            "details": "Mandarin",
-            "language": "Belgium"
+            "firstname": "Gail",
+            "language": "Mandarin",
+            "countries": "Belgium"
         },
         {
             "_id": 8,
-            "name": "Kellina",
-            "details": "Sylheti",
-            "language": "South Georgia & South Sandwich Islands"
+            "firstname": "Kellina",
+            "language": "Sylheti",
+            "countries": "South Georgia & South Sandwich Islands"
         },
         {
             "_id": 9,
-            "name": "Cam",
+            "firstname": "Cam",
             "address": "Spanish",
-            "language": "Marshall Islands"
+            "countries": "Marshall Islands"
         }
     ]
 }

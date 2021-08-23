@@ -1,5 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core';     // these are the core items to style
+import { useHistory, useLocation } from 'react-router-dom';
+
+import {format} from 'date-fns'     // Learn more on how to format date using this module https://www.npmjs.com/package/date-fns
+
+import { AppBar, makeStyles, Toolbar } from '@material-ui/core';     // these are the core items to style
 
 import Drawer from '@material-ui/core/Drawer';      // to create Drawer
 
@@ -10,9 +14,12 @@ import { ListItem } from '@material-ui/core';
 import { ListItemIcon } from '@material-ui/core';
 import { ListItemText } from '@material-ui/core';
 import { SubjectOutlined, SubjectRounded, SystemUpdateAltSharp } from '@material-ui/icons';
-import { useHistory, useLocation } from 'react-router-dom';
 
 const drawerWidth = 240
+
+// learn more on makestyle https://www.youtube.com/watch?v=6BkqRkw0Lwc&list=PL4cUxeGkcC9gjxLvV4VEkZ6H6H4yWuS58&index=15
+
+// learn more on App Bar https://www.youtube.com/watch?v=0WbrOfmvjvU&list=PL4cUxeGkcC9gjxLvV4VEkZ6H6H4yWuS58&index=16
 
 const useStyles = makeStyles((theme) => {             // more on styles arrow function using theme
     return {
@@ -38,11 +45,17 @@ const useStyles = makeStyles((theme) => {             // more on styles arrow fu
         title: {
             //padding: 20   //or use theme.spacing
             padding: theme.spacing(3)       // base theme is 8px and times 3 equal to 24px
-        }
+        },
+        appbar: {
+            width: `calc(100% - ${drawerWidth}px)`  // fix appbar width after is 100% - above mentioned drawerwidth
+        },
+        appbardate: {
+            flexGrow: 1                             // use this style to push date in left and other typography entries to right
+        },
+        toolbar: theme.mixins.toolbar               // use collection of mixins used by materialUI
     }
 })
 
-//learn more on makestyle https://www.youtube.com/watch?v=6BkqRkw0Lwc&list=PL4cUxeGkcC9gjxLvV4VEkZ6H6H4yWuS58&index=15
 
 export default function Layout({ children }) {      // pass the children under Layout tag in app.js to here 
 
@@ -66,6 +79,16 @@ export default function Layout({ children }) {      // pass the children under L
 
         <div className={styles.root}>
 
+            <AppBar className={styles.appbar}        //* create appbar to show application navigation's bar *//
+                elevation={0}                       //* this will remove the shadow like elevation effect under the appbar *//
+            >
+                <Toolbar>
+                    <Typography className={styles.appbardate}>
+                        Today is the {format(new Date(), 'dd MMMM Y')}
+                    </Typography>
+                    <Typography> User Name </Typography>
+                </Toolbar>
+            </AppBar>
             <Drawer                                 //* create drawer to show permanently on left and over-ride materialUI paper classes by our own drawerPaper styles
                 className={styles.drawer}
                 variant='permanent'
@@ -109,7 +132,7 @@ export default function Layout({ children }) {      // pass the children under L
 
 
             <div className={styles.pages}>          {/* use those styles in return*/}
-
+                <div className={styles.toolbar}></div>  {/* this will bring content page below the appbar */}
                 {children}
 
             </div>
