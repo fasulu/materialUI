@@ -7,7 +7,7 @@ import { IconButton, makeStyles } from "@material-ui/core";
 import Typography from '@material-ui/core/Typography';
 
 import { DeleteOutlined } from '@material-ui/icons';
-import { red, blue, green, pink } from '@material-ui/core/colors';
+import { red, blue, green, yellow } from '@material-ui/core/colors';
 
 import Avatar from '@material-ui/core/Avatar';
 
@@ -17,27 +17,27 @@ import Avatar from '@material-ui/core/Avatar';
 const useStyles = makeStyles({
   countryBorder: {
     border: (note) => {
-      if (note.countries == 'france') {
+      if (note.countries === 'france') {
         return '1px solid red'
-      } else if (note.countries == 'usa') {
+      } else if (note.countries === 'usa') {
         return '1px solid blue'
-      } else if (note.countries == 'england') {
+      } else if (note.countries === 'england') {
         return '1px solid green'
-      } else if (note.countries == 'russia') {
+      } else if (note.countries === 'russia') {
         return '1px solid yellow'
       }
     }
   },
   avatarColor: {
     backgroundColor: (note) => {
-      if (note.countries == 'france') {
+      if (note.countries === 'france') {
         return red[500]
-      } else if (note.countries == 'usa') {
+      } else if (note.countries === 'usa') {
         return blue[500]
-      } else if (note.countries == 'england') {
+      } else if (note.countries === 'england') {
         return green[500]
-      } else if (note.countries == 'russia') {
-        return pink[500]
+      } else if (note.countries === 'russia') {
+        return yellow[700]
       }
     }
   }
@@ -57,7 +57,7 @@ export default function NoteCard({ note, handleDelete }) {
 
           avatar={
             <Avatar className={styles.avatarColor}>
-            {note.countries[0].toUpperCase()}
+            {note.countries[0].toUpperCase()}     {/* picks first character of the country from note.countries array */}
             {/* {console.log(note.countries[0].toUpperCase())} */}
             </Avatar>
           }
@@ -73,14 +73,14 @@ export default function NoteCard({ note, handleDelete }) {
           }
 
           title={note.firstname}
-          subheader={note.countries}
+          subheader={note.language}
 
         />
         <CardContent>
 
           <Typography variant='body2' color='textSecondary'>
 
-            {note.language}
+            {note.countries}
 
           </Typography>
 

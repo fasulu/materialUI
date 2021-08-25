@@ -5,3 +5,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.my-masonry-grid {
+  display: -webkit-box; /* not needed if autoprefixing */
+  display: -ms-flexbox; /* not needed if autoprefixing */
+  display: flex;
+  margin-left: -30px; /* gutter size offset */
+  width: auto;
+}
+
+.my-masonry-grid_column {
+  padding-left: 30px; /* gutter size */
+  background-clip: padding-box;
+}
+
+/* style the items */
+.my-masonry-grid_column > div { /* change div to reference the elements to put in <Masonry */
+  /* background: grey;    /* commenting this because to avoid a small flash like dot in between each grid */
+  margin: 10px;
+}

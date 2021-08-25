@@ -91,7 +91,7 @@ export default function Layout({ children }) {      // pass the children under L
                     </Typography>
                     <Typography> User Name </Typography>
                     <Avatar className={styles.avatarmargin}
-                        src="/img_avatar/appa-avatar.png" />
+                        src="/img_avatar/appa-avatar-1.jpg" />
                 </Toolbar>
             </AppBar>
             <Drawer                                 //* create drawer to show permanently on left and over-ride materialUI paper classes by our own drawerPaper styles
@@ -125,7 +125,7 @@ export default function Layout({ children }) {      // pass the children under L
                             button
                             key={item.text}
                             onClick={() => history.push(item.path)}     // onclick change the page
-                            className={location.pathname == item.path ? styles.activePage : null}   // check current page path and show activepage color
+                            className={location.pathname === item.path ? styles.activePage : null}   // check current page path and show activepage color
                         >
                             <ListItemIcon> {item.icon}</ListItemIcon>
                             <ListItemText primary={item.text} />
